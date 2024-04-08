@@ -1,182 +1,51 @@
-## ascii-art
 
-### Objectives
+# ascii-art-web
 
-Ascii-art is a program which consists in receiving a `string` as an argument and outputting the `string` in a graphic representation using ASCII. Time to write big.
+This project is a simple ASCII Art Generator implemented in Go. It exposes two endpoints that can be accessed via HTTP. The ASCII Art Generator takes an input string and converts it into a corresponding ASCII art.
 
-What we mean by a graphic representation using ASCII, is to write the `string` received using ASCII characters, as you can see in the example below:
+## Authors
 
-```````````console
-@@@@@@BB@@@@``^^``^^``@@BB$$@@BB$$
-@@%%$$$$^^^^WW&&8888&&^^""BBBB@@@@
-@@@@@@""WW8888&&WW888888WW``@@@@$$
-BB$$``&&&&WWWW8888&&&&8888&&``@@@@
-$$``&&WW88&&88&&&&8888&&88WW88``$$
-@@""&&&&&&&&88888888&&&&&&88&&``$$
-``````^^``^^^^^^````""^^``^^``^^``
-""WW^^@@@@^^``````^^BB@@^^``^^&&``
-^^&&^^@@````^^``&&``@@````^^^^&&``
-``WW&&^^""``^^WW&&&&""``^^^^&&88``
-^^8888&&&&&&WW88&&88WW&&&&88&&WW``
-@@``&&88888888WW&&WW88&&88WW88^^$$
-@@""88&&&&&&&&888888&&``^^&&88``$$
-@@@@^^&&&&&&""``^^^^^^8888&&^^@@@@
-@@@@@@^^888888&&88&&&&MM88^^BB$$$$
-@@@@@@BB````&&&&&&&&88""``BB@@BB$$
-$$@@$$$$$$$$``````````@@$$@@$$$$$$
-```````````
+- Hasan Dhaif (hadhaif)
+- Ahmed Alhamed (ahalhamed)
 
-- This project should handle an input with numbers, letters, spaces, special characters and `\n`.
-- Take a look at the ASCII manual.
+## Usage
 
-### Instructions
+### Prerequisites
 
-- Your project must be written in **Go**.
-- The code must respect the [**good practices**](../good-practices/README.md).
-- It is recommended to have **test files** for [unit testing](https://go.dev/doc/tutorial/add-a-test).
+Go (version 1.16 or later)
 
-- Some **banner** files with a specific graphical template representation using ASCII will be given. The files are formatted in a way that is not necessary to change them.
+### How to Run
 
-  - [shadow](shadow.txt)
-  - [standard](standard.txt)
-  - [thinkertoy](thinkertoy.txt)
+1. Clone the repository
 
-### Banner Format
+   ``` bash
+   git clone https://learn.reboot01.com/git/hadhaif/ascii-art-web.git
+   ```
 
-- Each character has a height of 8 lines.
-- Characters are separated by a new line `\n`.
-- Here is an example of ' ', '!' and '"'(one dot represents one space) :
+2. Navigate to the project directory
 
-```console
+   ``` bash
+   cd ascii-art-web
+   ```
 
-......
-......
-......
-......
-......
-......
-......
-......
+3. Run the server
 
-._..
-|.|.
-|.|.
-|.|.
-|_|.
-(_).
-....
-....
+      ``` bash
+      go run .
+      ```
 
-._._..
-(.|.).
-.V.V..
-......
-......
-......
-......
-......
+   The server runs on port 8080 and has two endpoints:
 
-```
+- ```/``` : This is the main endpoint which is handled by ```MainHandler```.
+- ```/ascii-art``` : This endpoint is handled by ```AsciiHandler``` and generates ASCII art.
 
-### Usage
+You can access these endpoints in your web browser or using a tool like curl.
 
-```console
-student$ go run . "" | cat -e
-student$ go run . "\n" | cat -e
-$
-student$ go run . "Hello\n" | cat -e
- _    _          _   _          $
-| |  | |        | | | |         $
-| |__| |   ___  | | | |   ___   $
-|  __  |  / _ \ | | | |  / _ \  $
-| |  | | |  __/ | | | | | (_) | $
-|_|  |_|  \___| |_| |_|  \___/  $
-                                $
-                                $
-$
-student$ go run . "hello" | cat -e
- _              _   _          $
-| |            | | | |         $
-| |__     ___  | | | |   ___   $
-|  _ \   / _ \ | | | |  / _ \  $
-| | | | |  __/ | | | | | (_) | $
-|_| |_|  \___| |_| |_|  \___/  $
-                               $
-                               $
-student$ go run . "HeLlO" | cat -e
- _    _          _        _    ____   $
-| |  | |        | |      | |  / __ \  $
-| |__| |   ___  | |      | | | |  | | $
-|  __  |  / _ \ | |      | | | |  | | $
-| |  | | |  __/ | |____  | | | |__| | $
-|_|  |_|  \___| |______| |_|  \____/  $
-                                      $
-                                      $
-student$ go run . "Hello There" | cat -e
- _    _          _   _               _______   _                           $
-| |  | |        | | | |             |__   __| | |                          $
-| |__| |   ___  | | | |   ___          | |    | |__     ___   _ __    ___  $
-|  __  |  / _ \ | | | |  / _ \         | |    |  _ \   / _ \ | '__|  / _ \ $
-| |  | | |  __/ | | | | | (_) |        | |    | | | | |  __/ | |    |  __/ $
-|_|  |_|  \___| |_| |_|  \___/         |_|    |_| |_|  \___| |_|     \___| $
-                                                                           $
-                                                                           $
-student$ go run . "1Hello 2There" | cat -e
-     _    _          _   _                      _______   _                           $
- _  | |  | |        | | | |              ____  |__   __| | |                          $
-/ | | |__| |   ___  | | | |   ___       |___ \    | |    | |__     ___   _ __    ___  $
-| | |  __  |  / _ \ | | | |  / _ \        __) |   | |    |  _ \   / _ \ | '__|  / _ \ $
-| | | |  | | |  __/ | | | | | (_) |      / __/    | |    | | | | |  __/ | |    |  __/ $
-|_| |_|  |_|  \___| |_| |_|  \___/      |_____|   |_|    |_| |_|  \___| |_|     \___| $
-                                                                                      $
-                                                                                      $
-student$ go run . "{Hello There}" | cat -e
-   __  _    _          _   _               _______   _                           __    $
-  / / | |  | |        | | | |             |__   __| | |                          \ \   $
- | |  | |__| |   ___  | | | |   ___          | |    | |__     ___   _ __    ___   | |  $
-/ /   |  __  |  / _ \ | | | |  / _ \         | |    |  _ \   / _ \ | '__|  / _ \   \ \ $
-\ \   | |  | | |  __/ | | | | | (_) |        | |    | | | | |  __/ | |    |  __/   / / $
- | |  |_|  |_|  \___| |_| |_|  \___/         |_|    |_| |_|  \___| |_|     \___|  | |  $
-  \_\                                                                            /_/   $
-                                                                                       $
-student$ go run . "Hello\nThere" | cat -e
- _    _          _   _          $
-| |  | |        | | | |         $
-| |__| |   ___  | | | |   ___   $
-|  __  |  / _ \ | | | |  / _ \  $
-| |  | | |  __/ | | | | | (_) | $
-|_|  |_|  \___| |_| |_|  \___/  $
-                                $
-                                $
- _______   _                           $
-|__   __| | |                          $
-   | |    | |__     ___   _ __    ___  $
-   | |    |  _ \   / _ \ | '__|  / _ \ $
-   | |    | | | | |  __/ | |    |  __/ $
-   |_|    |_| |_|  \___| |_|     \___| $
-                                       $
-                                       $
-student$ go run . "Hello\n\nThere" | cat -e
- _    _          _   _          $
-| |  | |        | | | |         $
-| |__| |   ___  | | | |   ___   $
-|  __  |  / _ \ | | | |  / _ \  $
-| |  | | |  __/ | | | | | (_) | $
-|_|  |_|  \___| |_| |_|  \___/  $
-                                $
-                                $
-$
- _______   _                           $
-|__   __| | |                          $
-   | |    | |__     ___   _ __    ___  $
-   | |    |  _ \   / _ \ | '__|  / _ \ $
-   | |    | | | | |  __/ | |    |  __/ $
-   |_|    |_| |_|  \___| |_|     \___| $
-                                       $
-                                       $
-student$
-```
+## Implementation Details
 
-### Allowed packages
+The ASCII Art Generator uses a simple algorithm to convert each character of the input string into a corresponding ASCII art. The algorithm works by mapping each character to a predefined ASCII art pattern. The patterns are stored in a file for quick access, there is a separate file for each font. The algorithm iterates over each character of the input string, retrieves the corresponding ASCII art pattern from the file of the selected font, and appends it to the output string. The output string is then returned as the final ASCII art.
 
-- Only the [standard Go](https://golang.org/pkg/) packages are allowed
+- The ```StartLineCalc``` function is used to calculate the starting line in the file of a specific ASCII art pattern for a given character.
+- The ```ReadLines``` function is used to read a specific number of lines from the file of a specific ASCII art pattern starting from a given starting line.
+- The ```AppendAscii``` function is used to append two ASCII art patterns.
+- The ```AsciiLine``` function is used to generate the ASCII art for a single line of the input string using all three previously mentioned functions.
