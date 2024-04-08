@@ -1,0 +1,30 @@
+{{template "header"}}
+
+<div class="flex flex-col items-center justify-center min-h-screen">
+  <h1 class="text-4xl mb-4">ASCII-ART</h1>
+  <form action="/ascii-art" method="post" class="space-y-4">
+    <textarea
+      name="input"
+      id=""
+      cols="30"
+      rows="10"
+      class="bg-gray-800 border-solid border-2 border-sky-500 rounded px-3 py-2 w-64"
+      required
+    ></textarea>
+    <div>
+      <label
+        ><input type="radio" name="font" value="standard" checked />
+        Standard</label
+      >
+      <label><input type="radio" name="font" value="shadow" /> Shadow</label>
+      <label
+        ><input type="radio" name="font" value="thinkertoy" /> Thinkertoy</label
+      >
+    </div>
+    <input
+      type="submit"
+      value="SUBMIT"
+      class="bg-gray-800 px-4 py-2 rounded hover:bg-gray-700"
+    />
+  </form>
+</div>
