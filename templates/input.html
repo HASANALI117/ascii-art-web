@@ -2,7 +2,7 @@
 
 <div class="flex flex-col items-center justify-center min-h-screen">
   <h1 class="text-4xl mb-4">ASCII-ART</h1>
-  <form action="/ascii-art" method="post" class="space-y-4">
+  <form id="myForm" action="" method="post" class="space-y-4">
     <textarea
       name="input"
       id=""
@@ -21,10 +21,19 @@
         ><input type="radio" name="font" value="thinkertoy" /> Thinkertoy</label
       >
     </div>
-    <input
+    <button
       type="submit"
-      value="SUBMIT"
+      onclick="document.getElementById('myForm').action='/ascii-art';"
       class="bg-gray-800 px-4 py-2 rounded hover:bg-gray-700"
-    />
+    >
+      SUBMIT
+    </button>
+    <button
+      type="submit"
+      onclick="document.getElementById('myForm').action='/export';"
+      class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+    >
+      Export to File
+    </button>
   </form>
 </div>
