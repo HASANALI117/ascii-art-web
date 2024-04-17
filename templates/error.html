@@ -1,9 +1,9 @@
 {{template "header"}}
 
-<div class="container1">
-  <h1 class="header">{{.StatusCode}} - {{.Message}}</h1>
+<div class="container">
+  <h1 class="error-header">{{.StatusCode}} - {{.Message}}</h1>
   {{with .Description}}
   <p class="error-description">{{.}}</p>
   {{end}}
-  <a href="/" class="btn-home">HOME</a>
+  <a href="/" class="dark-btn">HOME</a>
 </div>
